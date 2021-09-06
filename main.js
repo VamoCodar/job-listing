@@ -37,29 +37,14 @@ const vm = new Vue({
                 const valoresNegativos = valores.filter(i => !i).length
 
 
-                if (tamanhoFiltros === 1) {
-                    if (valoresPositivos)
-                        return true
-                    else
-                        return false
-                }
-                if (tamanhoFiltros === 2) {
-                    if (valoresPositivos >= 2)
-                        return true
-                    else if (valoresPositivos >= 1)
-                        return false
-                    else
-                        return false
-                }
-                if (tamanhoFiltros >= 3) {
-                    if (valoresPositivos >= 3)
-                        return true
-                    else if (valoresPositivos <= 2)
-                        return false
-                    else
-                        return false
-                }
+                if (tamanhoFiltros === 1)
+                    return valoresPositivos ? true : false
 
+                if (tamanhoFiltros === 2)
+                    return (valoresPositivos >= 2) ? true : false
+
+                if (tamanhoFiltros >= 3)
+                    return (valoresPositivos >= 3) ? true : false
 
 
 
