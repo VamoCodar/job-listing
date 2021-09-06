@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <!-- bootstrepa -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <!-- style -->
+  <link rel="stylesheet" href="css/style.compilado.css" />
+
+  <title>Job Listings | Frontend Mentor</title>
+</head>
+
+<body>
+  <main id="app">
+    <div class="bg"></div>
+    <div class="job">
+      <div class="container position-relative p-0">
+        <!-- <div class="container__filter">
+            <button
+              v-show="!filterAtivo"
+              @click="filterAtivo = !filterAtivo"
+              class="filter__button"
+            >
+              <img src="images/filter.svg" alt="filter" />
+            </button> -->
+
+
+
+        <div v-show="filterAtivo" class="job__filter ">
+          <ul>
+            <li v-for="item,index in tagsAtivas" :key="item+index">
+              <p>{{item}}</p>
+              <span @click="removeTag(index)" class="close"></span>
+            </li>
+          </ul>
+
+          <p @click="clearAll">Clear</p>
+          <!--     <span @click="filterAtivo = !filterAtivo" class="filter__close" >X</span > -->
+
+        </div>
+      </div>
+      <div class="container p-0">
+
+        <div class="job__wrapper">
+          <div v-for="(item,index) in jobs" class="job__item" :key="item + index">
+            <img class="image" :src="item.logo" :alt="item.company" />
+            <div class="job__company">
+              <h2>{{item.company}}</h2>
+              <span v-show="item.new">
+                <p>New!</p>
+              </span>
+              <span v-show="item.featured">
+                <p>Featured</p>
+              </span>
+            </div>
+
+            <div class="job__name">
+              <h1>{{item.position}}</h1>
+            </div>
+            <div class="job__data">
+              <span>{{item.postedAt}}</span>
+              <span>{{item.contract}}</span>
+              <span>{{item.location}}</span>
+            </div>
+
+            <ul class="job__tags">
+              <li @click="addTag(item.role)">
+                <p>{{item.role}}</p>
+              </li>
+              <li @click="addTag(item.level)">
+                <p>{{item.level}}</p>
+              </li>
+              <li v-for=" language,index in item.languages" :key="language + index" @click="addTag(language)">
+                <p>{{language}}</p>
+              </li>
+              <li v-for=" tool,index in item.tools" :key="tool + index" @click="addTag(tool)">
+                <p>{{tool}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+
+</html>

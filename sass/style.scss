@@ -1,0 +1,293 @@
+@import "./reset";
+@import "./_utilitarios";
+@import "./responsivo";
+@import "./mixins";
+
+//variaveis
+$cor-azul-1:hsl(180, 29%, 50%);
+$cor-azul-2:hsl(180, 8%, 52%);
+$cor-azul-3: hsl(180, 14%, 20%);
+
+$cor-branco-1: hsl(180, 31%, 95%);
+$cor-branco-2:hsl(180, 52%, 96%);
+
+
+$font:'Spartan',
+sans-serif;
+
+
+
+body {
+    font-family: $font;
+    font-size: 15px;
+    background: $cor-branco-1;
+    font-weight: 500;
+}
+
+
+
+.bg {
+    @include bg-props-cover;
+    width: 100%;
+    height: 120px;
+    background-image: url("../images/bg-header-desktop.svg");
+    background-color: #5da5a4;
+}
+
+.job {
+    margin-top: 120px;
+
+    &__wrapper {
+        display: grid;
+        gap: 25px;
+        margin-bottom: 120px;
+    }
+
+    &__item {
+        //grid setup ITEM
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 130px 1fr 1.5fr;
+        align-items: center;
+        grid-template-areas:
+            "logo company tags"
+            "logo name tags"
+            "logo data tags"
+        ;
+    }
+
+    //grid areas ===
+    img {
+        grid-area: logo;
+    }
+
+    &__company {
+        grid-area: company;
+    }
+
+    &__data {
+        grid-area: data;
+    }
+
+    &__name {
+        grid-area: name;
+    }
+
+    &__tags {
+        grid-area: tags;
+    }
+
+    //===
+
+    //estilos
+    &__item {
+        background: white;
+        border-left: 4px solid $cor-azul-1;
+        border-radius: 4px;
+        padding: 25px .9375rem;
+        padding-left: 0;
+        box-shadow:
+            hsla(180, 29%, 50%, 0.275) 0px 1px 3px,
+            hsla(180, 29%, 50%, 0.145) 0px 1px 2px;
+    }
+
+    img.image {
+        margin: auto;
+    }
+
+    &__company {
+        display: flex;
+        align-items: center;
+        // margin-bottom: 10px;
+
+
+        >*+* {
+            //tudo que tiver depois de algo
+            margin-left: 12px;
+        }
+
+        h2 {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: $cor-azul-1;
+        }
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 20px;
+            padding: 0 10px;
+            color: #fff;
+            background: #5ba4a4;
+            text-transform: uppercase;
+            font-size: .65rem;
+            font-family: $font;
+            min-height: 25px;
+
+            &:last-child {
+                background: $cor-azul-3;
+            }
+
+            p {
+                height: max-content;
+                line-height: 110%;
+                display: inline-block;
+                margin-bottom: -4px;
+                font-weight: 700;
+                letter-spacing: .3px;
+            }
+
+        }
+    }
+
+    //NOME do job
+    &__name {
+        h1 {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: $cor-azul-3;
+            transition: .3s ease;
+            cursor: pointer;
+
+            &:hover {
+                color: $cor-azul-1;
+            }
+        }
+    }
+
+    //data
+    &__data {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        gap: 30px;
+
+        span {
+            display: inline-block;
+            font-size: .875rem;
+            color: $cor-azul-2;
+            position: relative;
+
+            &+span {
+                &:after {
+                    @include pseudo(absolute);
+                    @include size(5px);
+                    bottom: 0;
+                    top: -5px;
+                    margin: auto 0;
+                    border-radius: 50%;
+                    left: -15px;
+                    margin: auto;
+                    background: $cor-azul-2;
+                    opacity: .6;
+                }
+            }
+        }
+    }
+
+    //tags
+    &__tags {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+
+
+        li {
+            @include tag;
+        }
+    }
+
+
+
+
+
+
+    //filter =================
+    &__filter {
+        padding: 20px;
+        padding-right: 60px;
+        width: 100%;
+        @include center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        border-radius: 4px;
+        position: absolute;
+        height: 160px;
+        top: calc(-120px - 80px); //tamanho do bg  - metade do width
+        box-shadow:
+            hsla(180, 29%, 50%, 0.275) 0px 1px 3px,
+            hsla(180, 29%, 50%, 0.145) 0px 1px 2px;
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            li {
+                @include tag(true)
+            }
+        }
+
+        >p {
+            color: $cor-azul-1;
+            font-weight: 700;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+
+
+
+
+
+    //botao ativa filter
+    .container__filter {
+        position: relative;
+    }
+
+    .filter__button {
+        position: absolute;
+        @include size(34px);
+        top: -100px;
+        right: 0px;
+        background: white;
+        border-radius: 4px;
+        box-shadow:
+            hsla(180, 29%, 50%, 0.275) 0px 1px 3px,
+            hsla(180, 29%, 50%, 0.145) 0px 1px 2px;
+
+
+    }
+
+    //filter close
+    .filter__close {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 50%;
+        background: white;
+        width: 25px;
+        height: 25px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        box-shadow:
+            hsla(180, 29%, 50%, 0.275) 0px 1px 3px,
+            hsla(180, 29%, 50%, 0.145) 0px 1px 2px;
+
+    }
+}
+
+.semTag {
+    display: none;
+}

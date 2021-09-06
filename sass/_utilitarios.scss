@@ -1,0 +1,88 @@
+// ██╗   ██╗████████╗██╗██╗     ██╗████████╗ █████╗ ██████╗ ██╗ ██████╗ ███████╗
+// ██║   ██║╚══██╔══╝██║██║     ██║╚══██╔══╝██╔══██╗██╔══██╗██║██╔═══██╗██╔════╝
+// ██║   ██║   ██║   ██║██║     ██║   ██║   ███████║██████╔╝██║██║   ██║███████╗
+// ██║   ██║   ██║   ██║██║     ██║   ██║   ██╔══██║██╔══██╗██║██║   ██║╚════██║
+// ╚██████╔╝   ██║   ██║███████╗██║   ██║   ██║  ██║██║  ██║██║╚██████╔╝███████║
+//  ╚═════╝    ╚═╝   ╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚══════╝
+
+
+// @import "./scrollbars"; //scrollbar colorida
+
+
+
+//PX TO REM
+$browser-context: 16; // Default
+
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
+@mixin center($left:auto, $right:auto) {
+  margin-left: $left;
+  margin-right: $right;
+}
+
+@mixin pseudo($p: initial) {
+  content: "";
+  display: block;
+  @include bg-props-contain;
+  position: $p;
+  pointer-events: none;
+}
+
+@mixin inset {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+//background
+@mixin bg-props-contain {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+@mixin bg-props-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// Sizing
+// ------
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// Normal & hover state
+// --------------------
+@mixin hoverer($property, $normal, $hovered) {
+  transition: 0.3s ease;
+  #{$property}: $normal;
+
+  &:hover {
+    #{$property}: $hovered;
+  }
+}
+
+@mixin data__logo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 5px 10px;
+
+  img {
+    width: 130px;
+  }
+}
+
+
+@mixin imgCoverAbsolute {
+  @include size(100%);
+  position: absolute;
+  object-fit: cover;
+  @include inset
+}

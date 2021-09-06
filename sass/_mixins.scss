@@ -1,0 +1,46 @@
+@mixin tag($close:false) {
+    background: $cor-branco-1;
+    color: $cor-azul-1;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    transition: .3s ease;
+    display: inline-flex;
+    align-items: center;
+    line-height: 200%;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:hover {
+        color: white;
+        background: $cor-azul-1;
+    }
+
+    p {
+        padding: 5px 10px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    @if $close==true {
+        span {
+            @include bg-props-contain;
+            background-image: url("../images/icon-remove.svg");
+            background-color: $cor-azul-1;
+            background-size: 40%;
+            padding: 5px;
+            cursor: pointer;
+            transition: .3s ease;
+            height: 38px;
+            width: 38px;
+
+            &:hover {
+                background-color: $cor-azul-3;
+            }
+        }
+    }
+
+
+
+    @content
+}
