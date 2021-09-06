@@ -17,6 +17,26 @@ sans-serif;
 
 
 
+//rem responsivo
+html {
+    --font-base: 100%;
+    font-size: var(--font-base);
+}
+
+@media (max-width: 1440px) {
+    html {
+        font-size: calc(var(--font-base) - 15.25%);
+    }
+}
+
+@media (max-width: 980px) {
+    html {
+        font-size: calc(var(--font-base) - 12.5%);
+    }
+}
+
+
+
 body {
     font-family: $font;
     font-size: 15px;
@@ -206,7 +226,7 @@ body {
 
     //filter =================
     &__filter {
-        padding: 20px;
+        padding: 1.25rem;
         padding-right: 60px;
         width: 100%;
         @include center;
@@ -290,4 +310,74 @@ body {
 
 .semTag {
     display: none;
+}
+
+.job__tags li.active {
+    background: $cor-azul-1 !important;
+    color: white !important;
+}
+
+@include d(m) {
+    .job__filter {
+        min-height: 160px;
+        height: max-content;
+        width: calc(100% - 30px);
+        min-width: initial;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        height: max-content;
+    }
+
+    .container {
+        padding: 0 15px !important;
+    }
+
+    .job__tags {
+        // grid-column: 1/4;
+        // grid-row: 4;
+    }
+
+    .job__item {
+        position: relative;
+        padding: 32px 20px 20px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "company company"
+            "name name"
+            "data data"
+            "tags tags";
+
+        img {
+            position: absolute;
+            grid-area: initial;
+            top: -22.5px;
+            left: 15px;
+            // display: none;
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .job__tags {
+            justify-content: start;
+            margin-top: 10px;
+            border-top: 1px solid #00000021;
+            padding-top: 10px;
+        }
+    }
+
+    .job__filter>p {
+        position: absolute;
+        top: -10px;
+        background: #eef6f6;
+        padding: 4px;
+        border-radius: 4px;
+        right: -10px;
+        border: 1px solid #0000000f;
+    }
+
+    .job__wrapper {
+        gap: 45px;
+    }
 }

@@ -89,7 +89,7 @@ const vm = new Vue({
 
         },
 
-
+        contemTag(item) { return this.tagsAtivas.includes(item) }
 
     },
 
